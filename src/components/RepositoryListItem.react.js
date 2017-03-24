@@ -1,22 +1,49 @@
 import React from 'react'
+import { fetchRepository } from 'api'
 
 class RepositoryListItem extends React.Component {
+
+    state = {
+        repository: {}
+    }
+
+    componentDidMount() {        
+        fetchRepository(this.props.repositoryName)
+        .then( repository => {
+            this.setState({ 
+                repository: repository
+            })
+        })
+    }
+
     render() {
+        const { 
+            full_name = "Loading...",
+            description,
+            stargazers_count,
+            open_issues_count,
+            forks_count,
+            watchers_count,
+            organization = {}
+         } = this.state.repository
+
         return (
             <div className="box">
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
-                            <img alt="" src="https://avatars0.githubusercontent.com/u/69631?v=3"/>
+                            <img alt="" src={organization.avatar_url}/>
                         </figure>
                     </div>
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong><a className="title" href="#/frontend-war-react/facebook/react">react</a></strong>
+                                <strong><a className="title" href="#/frontend-war-react/facebook/react">
+                                { full_name }
+                                </a></strong>
                             </p>
                             <p className="subtitle">
-                                A declarative, efficient, and flexible JavaScript library for building user interfaces.
+                                { description }
                             </p>
                         </div>
                     </div>
@@ -28,25 +55,25 @@ class RepositoryListItem extends React.Component {
                     <div className="level-item has-text-centered">
                         <div>
                             <p className="heading">Stars</p>
-                            <a className="title" href="#/frontend-war-react/">62689</a>
+                            <a className="title" href="#/frontend-war-react/">{ stargazers_count }</a>
                         </div>
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
                             <p className="heading">Open Issues</p>
-                            <p className="title">701</p>
+                            <p className="title">{ open_issues_count }</p>
                         </div>
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
                             <p className="heading">Forks</p>
-                            <p className="title">11570</p>
+                            <p className="title">{ forks_count }</p>
                         </div>
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
                         <p className="heading">Watchers</p>
-                        <p className="title">124</p>
+                        <p className="title">{ watchers_count }</p>
                         </div>
                     </div>
                 </nav>
