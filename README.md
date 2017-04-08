@@ -1,5 +1,5 @@
 
-## Gucode React Tutorial
+# Gucode React Tutorial
 
 Code from Gucode EP.5
 
@@ -11,3 +11,5 @@ npm start
 ```
 
 Watch tutorial video on Gucode Youtube Channel: [https://www.youtube.com/channel/UC2e64YsO3vH8LAP7OJxfmdQ](https://www.youtube.com/channel/UC2e64YsO3vH8LAP7OJxfmdQ)
+
+**Don't forget to Subscribe to Gucode Channel**
